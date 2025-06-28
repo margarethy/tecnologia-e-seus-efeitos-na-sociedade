@@ -22,17 +22,24 @@ const perguntas = [
     ]
   },
   {
-    enunciado: "O uso de redes sociais transforma:",
+    enunciado: "Quais os efeitos sociais das redes sociais?",
     alternativas: [
-      { texto: "A forma de comunicação.", afirmacao: "Você reconheceu o impacto na forma como nos conectamos." },
-      { texto: "A privacidade das pessoas.", afirmacao: "Você destacou os riscos à privacidade." }
+      { texto: "Aproximam pessoas.", afirmacao: "Você acredita que as redes sociais conectam pessoas." },
+      { texto: "Podem causar isolamento.", afirmacao: "Você percebeu os riscos do isolamento digital." }
     ]
   },
   {
-    enunciado: "A automação nas cidades inteligentes ajuda em:",
+    enunciado: "O que a automação pode significar para a indústria?",
     alternativas: [
-      { texto: "Mobilidade urbana.", afirmacao: "Você acredita em soluções tecnológicas para o trânsito." },
-      { texto: "Economia de recursos.", afirmacao: "Você vê a tecnologia como ferramenta sustentável." }
+      { texto: "Maior eficiência e produção.", afirmacao: "Você entendeu que a automação melhora a eficiência." },
+      { texto: "Desemprego e requalificação.", afirmacao: "Você considerou o impacto na requalificação profissional." }
+    ]
+  },
+  {
+    enunciado: "Como a tecnologia pode ajudar o meio ambiente?",
+    alternativas: [
+      { texto: "Monitorando e reduzindo impactos.", afirmacao: "Você reconheceu o papel da tecnologia na sustentabilidade." },
+      { texto: "Pode gerar poluição eletrônica.", afirmacao: "Você está atento à poluição tecnológica." }
     ]
   }
 ];
@@ -41,7 +48,6 @@ let atual = 0;
 let historiaFinal = "";
 
 botaoIniciar.addEventListener("click", () => {
-  new Audio("click2.wav").play();
   telaInicial.classList.add("escondido");
   caixaPrincipal.classList.remove("escondido");
   iniciarJogo();
@@ -51,7 +57,7 @@ function iniciarJogo() {
   atual = 0;
   historiaFinal = "";
   textoResultado.textContent = "";
-  botaoReiniciar.style.display = "none";
+  botaoReiniciar.classList.add("escondido");
   mostrarPergunta();
 }
 
@@ -70,7 +76,6 @@ function mostrarPergunta() {
     botao.textContent = alt.texto;
     botao.classList.add("botao-alternativa");
     botao.addEventListener("click", () => {
-      new Audio("click.mp3").play();
       historiaFinal += alt.afirmacao + " ";
       atual++;
       mostrarPergunta();
@@ -83,40 +88,41 @@ function mostrarResultado() {
   caixaPerguntas.textContent = "Em 2049...";
   textoResultado.textContent = historiaFinal.trim();
   caixaAlternativas.innerHTML = "";
-  botaoReiniciar.style.display = "inline-block";
+  botaoReiniciar.classList.remove("escondido");
 
-  // Fala o resultado final
-  const fala = new SpeechSynthesisUtterance(textoResultado.textContent);
-  fala.lang = "pt-BR";
-  window.speechSynthesis.speak(fala);
+  // Falar o resultado em voz alta
+  if ('speechSynthesis' in window) {
+    const fala = new SpeechSynthesisUtterance(historiaFinal.trim());
+    fala.lang = 'pt-BR';
+    window.speechSynthesis.speak(fala);
+  }
 }
 
 botaoReiniciar.addEventListener("click", iniciarJogo);
-// Cria confetes coloridos e animados
+
+// Confetes animados
+
 function criarConfete() {
   const confete = document.createElement("div");
   confete.classList.add("confete");
 
-  // Posições e duração aleatórias
   confete.style.left = Math.random() * window.innerWidth + "px";
   confete.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 70%)`;
-  confete.style.width = confete.style.height = 8 + Math.random() * 12 + "px";
+  const size = 8 + Math.random() * 12;
+  confete.style.width = size + "px";
+  confete.style.height = size + "px";
   confete.style.animationDuration = 3 + Math.random() * 3 + "s";
   confete.style.animationDelay = Math.random() * 5 + "s";
 
   document.body.appendChild(confete);
 
-  // Remove depois da animação
   setTimeout(() => {
     confete.remove();
   }, 7000);
 }
 
-// Cria muitos confetes em intervalos para efeito contínuo
 function soltarConfetes() {
   setInterval(criarConfete, 300);
 }
 
-// Começa a soltar confetes ao carregar a página
 window.addEventListener("load", soltarConfetes);
-
