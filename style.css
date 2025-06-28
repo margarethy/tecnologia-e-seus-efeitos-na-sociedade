@@ -1,87 +1,96 @@
-/* Tema divertido e colorido com efeitos especiais para "Tecnologia e seus efeitos na sociedade" */
+/* Tema fofo com confetes animados */
 
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
 
 :root {
-  --cor-fundo: #0f0c29;
-  --cor-painel: #302b63;
-  --cor-destaque: #ffcc00;
-  --cor-texto: #f1f1f1;
-  --cor-botao: #40e0d0;
-  --cor-botao-hover: #30cfcf;
-  --cor-reiniciar: #ff6f91;
-  --cor-reiniciar-hover: #e65a80;
-  --sombra-neon: 0 0 8px #40e0d0, 0 0 16px #ffcc00;
-}
-
-/* Classe para esconder elementos */
-.escondido {
-  display: none !important;
+  --cor-fundo: #fff0f6;
+  --cor-painel: #ffd6e8;
+  --cor-destaque: #ff6f91;
+  --cor-texto: #5b3756;
+  --cor-botao: #ff8fab;
+  --cor-botao-hover: #ff6f91;
+  --cor-reiniciar: #ff91a4;
+  --cor-reiniciar-hover: #e55a6f;
+  --sombra: 0 4px 8px rgba(255, 111, 145, 0.3);
 }
 
 body {
   margin: 0;
-  padding: 0;
-  font-family: 'Press Start 2P', cursive;
-  background: linear-gradient(145deg, #0f0c29, #302b63, #24243e);
+  padding: 20px;
+  font-family: 'Baloo 2', cursive;
+  background-color: var(--cor-fundo);
   color: var(--cor-texto);
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
-  padding: 20px;
-  background-size: 400% 400%;
-  animation: fundoAnimado 20s ease infinite;
+  position: relative;
+  overflow-x: hidden;
 }
 
-@keyframes fundoAnimado {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
+/* Confetes animados */
+.confete {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background-color: var(--cor-botao);
+  opacity: 0.8;
+  border-radius: 50%;
+  animation-name: cair;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+@keyframes cair {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 .tela-inicial, .caixa-principal {
   background-color: var(--cor-painel);
-  border-radius: 15px;
-  padding: 25px;
+  border-radius: 20px;
+  padding: 30px;
   width: 100%;
   max-width: 600px;
   text-align: center;
-  box-shadow: var(--sombra-neon);
+  box-shadow: var(--sombra);
   border: 2px solid var(--cor-destaque);
 }
 
 h1, h2 {
   color: var(--cor-destaque);
-  margin-bottom: 15px;
-  text-shadow: var(--sombra-neon);
-  font-size: 1.2rem;
+  margin-bottom: 20px;
+  font-weight: 700;
 }
 
 p {
-  font-size: 0.85rem;
-  line-height: 1.6;
-  margin-bottom: 20px;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 25px;
 }
 
 button {
-  font-family: 'Press Start 2P', cursive;
-  padding: 12px 18px;
-  font-size: 0.75rem;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  margin-top: 15px;
-  transition: all 0.3s ease;
-  box-shadow: var(--sombra-neon);
-}
-
-.iniciar-btn {
   background-color: var(--cor-botao);
-  color: #000;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 12px 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: var(--sombra);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-family: 'Baloo 2', cursive;
 }
 
-.iniciar-btn:hover {
+button:hover {
   background-color: var(--cor-botao-hover);
   transform: scale(1.05);
 }
@@ -89,28 +98,36 @@ button {
 .caixa-perguntas,
 .caixa-alternativas,
 .caixa-resultado {
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .botao-alternativa {
   display: block;
   width: 100%;
-  margin: 10px 0;
+  margin: 12px 0;
   background-color: var(--cor-botao);
-  color: #000;
-  box-shadow: var(--sombra-neon);
+  color: white;
+  border-radius: 15px;
+  padding: 12px;
+  font-size: 1rem;
+  box-shadow: var(--sombra);
+  transition: background-color 0.3s ease;
 }
 
 .botao-alternativa:hover {
   background-color: var(--cor-botao-hover);
-  transform: scale(1.03);
 }
 
 .botao-reiniciar {
   background-color: var(--cor-reiniciar);
   color: white;
   display: none;
-  margin: 10px auto;
+  margin: 30px auto 0;
+  padding: 12px 30px;
+  border-radius: 15px;
+  font-size: 1rem;
+  box-shadow: var(--sombra);
+  transition: background-color 0.3s ease;
 }
 
 .botao-reiniciar:hover {
@@ -123,32 +140,23 @@ button {
 
 footer {
   margin-top: 40px;
-  color: #bbb;
-  font-size: 0.7rem;
+  color: var(--cor-texto);
+  font-size: 0.8rem;
   text-align: center;
 }
 
-/* Responsivo para celular */
+/* Responsivo */
 @media (max-width: 480px) {
   .tela-inicial, .caixa-principal {
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
   }
 
   h1, h2 {
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
 
-  button {
-    font-size: 0.7rem;
-    padding: 10px 14px;
-  }
-
-  .botao-alternativa {
-    font-size: 0.75rem;
-  }
-
-  p {
-    font-size: 0.75rem;
+  p, button, .botao-alternativa {
+    font-size: 0.9rem;
   }
 }
