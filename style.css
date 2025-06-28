@@ -1,28 +1,37 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap');
+/* Tema personalizado: Neon Futurista */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
 :root {
-  --cor-fundo: #fff5e1;
-  --cor-painel: #ffdab9;
-  --cor-destaque: #ff6f61;
-  --cor-texto: #333333;
-  --cor-botao: #ffb347;
-  --cor-botao-hover: #ff9f1c;
-  --cor-reiniciar: #ff6f61;
-  --cor-reiniciar-hover: #e63946;
+  --cor-fundo: #0a0a23;
+  --cor-painel: #1e1e3f;
+  --cor-destaque: #00ffe7;
+  --cor-texto: #ffffff;
+  --cor-botao: #00ffe7;
+  --cor-botao-hover: #00c2a8;
+  --cor-reiniciar: #ff5e7d;
+  --cor-reiniciar-hover: #cc4b64;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Fredoka', sans-serif;
-  background: linear-gradient(to bottom right, #fff5e1, #ffe6f0);
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(135deg, #0a0a23 0%, #1e1e3f 100%);
   color: var(--cor-texto);
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
   padding: 20px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  animation: bgAnimar 10s ease-in-out infinite alternate;
+}
+
+@keyframes bgAnimar {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
 
 .tela-inicial, .caixa-principal {
@@ -31,7 +40,7 @@ body {
   padding: 30px;
   max-width: 600px;
   width: 100%;
-  box-shadow: 0 0 25px rgba(255, 179, 71, 0.3);
+  box-shadow: 0 0 25px rgba(0, 255, 231, 0.3);
   text-align: center;
 }
 
@@ -39,16 +48,17 @@ h1, h2 {
   color: var(--cor-destaque);
   margin-bottom: 20px;
   text-transform: uppercase;
-  text-shadow: 1px 1px #fff;
+  text-shadow: 0 0 10px var(--cor-destaque);
 }
 
 p {
   font-size: 1.1rem;
   margin-bottom: 20px;
+  line-height: 1.6;
 }
 
 button {
-  font-family: 'Fredoka', sans-serif;
+  font-family: 'Orbitron', sans-serif;
   border: none;
   padding: 12px 24px;
   font-size: 1rem;
@@ -56,11 +66,12 @@ button {
   cursor: pointer;
   margin-top: 10px;
   transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 255, 231, 0.1);
 }
 
 .iniciar-btn {
   background-color: var(--cor-botao);
-  color: #fff;
+  color: #0a0a23;
 }
 
 .iniciar-btn:hover {
@@ -68,17 +79,18 @@ button {
   transform: scale(1.05);
 }
 
+.caixa-perguntas,
+.caixa-alternativas,
+.caixa-resultado {
+  margin-top: 20px;
+}
+
 .botao-alternativa {
   display: block;
   width: 100%;
   margin: 10px 0;
   background-color: var(--cor-botao);
-  color: #fff;
-  padding: 12px;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  color: #0a0a23;
 }
 
 .botao-alternativa:hover {
@@ -89,41 +101,46 @@ button {
 .botao-reiniciar {
   background-color: var(--cor-reiniciar);
   color: white;
-  padding: 12px 24px;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
   display: none;
-  transition: background-color 0.3s ease;
+  margin: 10px auto;
 }
 
 .botao-reiniciar:hover {
   background-color: var(--cor-reiniciar-hover);
 }
 
-.caixa-principal.escondido,
-.tela-inicial.escondido {
-  display: none;
+.botao-reiniciar.mostrar {
+  display: inline-block;
 }
 
 footer {
   margin-top: 40px;
-  color: #666;
+  color: #888;
   font-size: 0.8rem;
   text-align: center;
 }
 
+/* Responsivo para celular */
 @media (max-width: 480px) {
   .tela-inicial, .caixa-principal {
-    padding: 20px;
+    padding: 15px;
+    border-radius: 15px;
   }
 
   h1, h2 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   button {
     font-size: 0.9rem;
-    padding: 10px 18px;
+    padding: 10px 16px;
+  }
+
+  .botao-alternativa {
+    font-size: 0.95rem;
+  }
+
+  p {
+    font-size: 1rem;
   }
 }
