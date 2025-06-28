@@ -27,7 +27,7 @@ let atual = 0;
 let historiaFinal = "";
 
 botaoIniciar.addEventListener("click", () => {
-  new Audio("click.mp3").play();
+  new Audio("click2.wav").play();
   telaInicial.classList.add("escondido");
   caixaPrincipal.classList.remove("escondido");
   iniciarJogo();
