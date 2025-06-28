@@ -14,6 +14,11 @@
   --sombra-neon: 0 0 8px #40e0d0, 0 0 16px #ffcc00;
 }
 
+/* Classe para esconder elementos */
+.escondido {
+  display: none !important;
+}
+
 body {
   margin: 0;
   padding: 0;
