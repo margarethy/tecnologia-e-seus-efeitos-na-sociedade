@@ -22,31 +22,17 @@ const perguntas = [
     ]
   },
   {
-    enunciado: "Como a tecnologia influencia as relações sociais?",
+    enunciado: "O uso de redes sociais transforma:",
     alternativas: [
-      { texto: "Aproxima pessoas mesmo à distância.", afirmacao: "A tecnologia conectou você a amigos distantes." },
-      { texto: "Afasta as pessoas no convívio presencial.", afirmacao: "Você percebe que as interações presenciais diminuíram." }
+      { texto: "A forma de comunicação.", afirmacao: "Você reconheceu o impacto na forma como nos conectamos." },
+      { texto: "A privacidade das pessoas.", afirmacao: "Você destacou os riscos à privacidade." }
     ]
   },
   {
-    enunciado: "Qual o papel da tecnologia na saúde?",
+    enunciado: "A automação nas cidades inteligentes ajuda em:",
     alternativas: [
-      { texto: "Melhora diagnósticos e tratamentos.", afirmacao: "Você acredita que a tecnologia salvou vidas." },
-      { texto: "Pode gerar dependência de soluções automáticas.", afirmacao: "Você se preocupa com o uso excessivo de dispositivos na saúde." }
-    ]
-  },
-  {
-    enunciado: "Como a tecnologia afeta o meio ambiente?",
-    alternativas: [
-      { texto: "Ajuda no monitoramento ambiental.", afirmacao: "Você valoriza o uso de sensores e dados para proteger o planeta." },
-      { texto: "Contribui para o aumento do lixo eletrônico.", afirmacao: "Você reconhece o impacto do descarte tecnológico no ambiente." }
-    ]
-  },
-  {
-    enunciado: "A tecnologia pode afetar a criatividade?",
-    alternativas: [
-      { texto: "Estimula a criação com novas ferramentas.", afirmacao: "Você acredita que a IA impulsiona a criatividade humana." },
-      { texto: "Pode limitar a imaginação quando tudo é automatizado.", afirmacao: "Você teme que a automação reduza o pensamento criativo." }
+      { texto: "Mobilidade urbana.", afirmacao: "Você acredita em soluções tecnológicas para o trânsito." },
+      { texto: "Economia de recursos.", afirmacao: "Você vê a tecnologia como ferramenta sustentável." }
     ]
   }
 ];
@@ -55,6 +41,7 @@ let atual = 0;
 let historiaFinal = "";
 
 botaoIniciar.addEventListener("click", () => {
+  new Audio("click2.wav").play();
   telaInicial.classList.add("escondido");
   caixaPrincipal.classList.remove("escondido");
   iniciarJogo();
@@ -83,6 +70,7 @@ function mostrarPergunta() {
     botao.textContent = alt.texto;
     botao.classList.add("botao-alternativa");
     botao.addEventListener("click", () => {
+      new Audio("click.mp3").play();
       historiaFinal += alt.afirmacao + " ";
       atual++;
       mostrarPergunta();
@@ -97,10 +85,10 @@ function mostrarResultado() {
   caixaAlternativas.innerHTML = "";
   botaoReiniciar.style.display = "inline-block";
 
-  // Tornar o resultado falado
+  // Fala o resultado final
   const fala = new SpeechSynthesisUtterance(textoResultado.textContent);
   fala.lang = "pt-BR";
-  speechSynthesis.speak(fala);
+  window.speechSynthesis.speak(fala);
 }
 
 botaoReiniciar.addEventListener("click", iniciarJogo);
