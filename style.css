@@ -1,57 +1,30 @@
-/* Tema fofo com confetes animados */
+/* Tema fofo com confetes */
 
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
 
 :root {
-  --cor-fundo: #fff0f6;
-  --cor-painel: #ffd6e8;
+  --cor-fundo: #fef6f6;
+  --cor-painel: #ffdee9;
   --cor-destaque: #ff6f91;
-  --cor-texto: #5b3756;
-  --cor-botao: #ff8fab;
+  --cor-texto: #5c3a21;
+  --cor-botao: #ff9a9e;
   --cor-botao-hover: #ff6f91;
-  --cor-reiniciar: #ff91a4;
-  --cor-reiniciar-hover: #e55a6f;
-  --sombra: 0 4px 8px rgba(255, 111, 145, 0.3);
+  --cor-reiniciar: #ff6f91;
+  --cor-reiniciar-hover: #e05571;
+  --sombra: 0 0 12px #ff9a9e;
 }
 
 body {
   margin: 0;
   padding: 20px;
-  font-family: 'Baloo 2', cursive;
-  background-color: var(--cor-fundo);
+  font-family: 'Comic Neue', cursive, sans-serif;
+  background: linear-gradient(135deg, #fceaff, #ffdee9);
   color: var(--cor-texto);
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+  min-height: 100vh;
   overflow-x: hidden;
-}
-
-/* Confetes animados */
-.confete {
-  position: fixed;
-  width: 10px;
-  height: 10px;
-  background-color: var(--cor-botao);
-  opacity: 0.8;
-  border-radius: 50%;
-  animation-name: cair;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  z-index: 9999;
-  pointer-events: none;
-}
-
-@keyframes cair {
-  0% {
-    transform: translateY(-10px) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(110vh) rotate(360deg);
-    opacity: 0;
-  }
 }
 
 .tela-inicial, .caixa-principal {
@@ -59,35 +32,34 @@ body {
   border-radius: 20px;
   padding: 30px;
   width: 100%;
-  max-width: 600px;
-  text-align: center;
+  max-width: 480px;
   box-shadow: var(--sombra);
-  border: 2px solid var(--cor-destaque);
+  text-align: center;
+  transition: opacity 0.4s ease;
 }
 
-h1, h2 {
+h1 {
+  margin-bottom: 15px;
   color: var(--cor-destaque);
-  margin-bottom: 20px;
-  font-weight: 700;
+  font-size: 1.8rem;
+  text-shadow: 1px 1px 3px #ffa0b0;
 }
 
 p {
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: 1.1rem;
   margin-bottom: 25px;
 }
 
 button {
   background-color: var(--cor-botao);
-  color: white;
   border: none;
-  border-radius: 15px;
-  padding: 12px 25px;
+  border-radius: 25px;
+  padding: 12px 30px;
   font-size: 1rem;
+  color: var(--cor-texto);
   cursor: pointer;
   box-shadow: var(--sombra);
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  font-family: 'Baloo 2', cursive;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
@@ -104,59 +76,82 @@ button:hover {
 .botao-alternativa {
   display: block;
   width: 100%;
-  margin: 12px 0;
+  margin: 10px 0;
   background-color: var(--cor-botao);
-  color: white;
-  border-radius: 15px;
-  padding: 12px;
+  color: var(--cor-texto);
+  border-radius: 20px;
+  padding: 14px 20px;
   font-size: 1rem;
   box-shadow: var(--sombra);
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .botao-alternativa:hover {
   background-color: var(--cor-botao-hover);
+  transform: scale(1.03);
 }
 
 .botao-reiniciar {
   background-color: var(--cor-reiniciar);
   color: white;
-  display: none;
-  margin: 30px auto 0;
   padding: 12px 30px;
-  border-radius: 15px;
   font-size: 1rem;
+  border-radius: 25px;
+  margin-top: 30px;
   box-shadow: var(--sombra);
-  transition: background-color 0.3s ease;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .botao-reiniciar:hover {
   background-color: var(--cor-reiniciar-hover);
+  transform: scale(1.05);
 }
 
-.botao-reiniciar.mostrar {
-  display: inline-block;
+.escondido {
+  display: none !important;
 }
 
-footer {
-  margin-top: 40px;
-  color: var(--cor-texto);
-  font-size: 0.8rem;
-  text-align: center;
+/* Confetes */
+
+.confete {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background-color: #ff6f91;
+  opacity: 0.9;
+  top: -10px;
+  border-radius: 50%;
+  animation-name: cair;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
 }
 
-/* Responsivo */
+@keyframes cair {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+/* Responsividade */
+
 @media (max-width: 480px) {
   .tela-inicial, .caixa-principal {
     padding: 20px;
-    border-radius: 15px;
+    max-width: 90vw;
   }
 
-  h1, h2 {
-    font-size: 1.3rem;
+  h1 {
+    font-size: 1.4rem;
   }
 
-  p, button, .botao-alternativa {
+  button, .botao-alternativa, .botao-reiniciar {
     font-size: 0.9rem;
+    padding: 10px 25px;
   }
 }
