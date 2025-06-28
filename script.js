@@ -92,3 +92,31 @@ function mostrarResultado() {
 }
 
 botaoReiniciar.addEventListener("click", iniciarJogo);
+// Cria confetes coloridos e animados
+function criarConfete() {
+  const confete = document.createElement("div");
+  confete.classList.add("confete");
+
+  // Posições e duração aleatórias
+  confete.style.left = Math.random() * window.innerWidth + "px";
+  confete.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 70%)`;
+  confete.style.width = confete.style.height = 8 + Math.random() * 12 + "px";
+  confete.style.animationDuration = 3 + Math.random() * 3 + "s";
+  confete.style.animationDelay = Math.random() * 5 + "s";
+
+  document.body.appendChild(confete);
+
+  // Remove depois da animação
+  setTimeout(() => {
+    confete.remove();
+  }, 7000);
+}
+
+// Cria muitos confetes em intervalos para efeito contínuo
+function soltarConfetes() {
+  setInterval(criarConfete, 300);
+}
+
+// Começa a soltar confetes ao carregar a página
+window.addEventListener("load", soltarConfetes);
+
