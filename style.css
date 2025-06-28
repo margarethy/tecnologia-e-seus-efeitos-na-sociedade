@@ -1,77 +1,79 @@
-/* Tema personalizado: Neon Futurista */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+/* Tema divertido e colorido com efeitos especiais para "Tecnologia e seus efeitos na sociedade" */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 :root {
-  --cor-fundo: #0a0a23;
-  --cor-painel: #1e1e3f;
-  --cor-destaque: #00ffe7;
-  --cor-texto: #ffffff;
-  --cor-botao: #00ffe7;
-  --cor-botao-hover: #00c2a8;
-  --cor-reiniciar: #ff5e7d;
-  --cor-reiniciar-hover: #cc4b64;
+  --cor-fundo: #0f0c29;
+  --cor-painel: #302b63;
+  --cor-destaque: #ffcc00;
+  --cor-texto: #f1f1f1;
+  --cor-botao: #40e0d0;
+  --cor-botao-hover: #30cfcf;
+  --cor-reiniciar: #ff6f91;
+  --cor-reiniciar-hover: #e65a80;
+  --sombra-neon: 0 0 8px #40e0d0, 0 0 16px #ffcc00;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Orbitron', sans-serif;
-  background: linear-gradient(135deg, #0a0a23 0%, #1e1e3f 100%);
+  font-family: 'Press Start 2P', cursive;
+  background: linear-gradient(145deg, #0f0c29, #302b63, #24243e);
   color: var(--cor-texto);
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
   padding: 20px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  animation: bgAnimar 10s ease-in-out infinite alternate;
+  background-size: 400% 400%;
+  animation: fundoAnimado 20s ease infinite;
 }
 
-@keyframes bgAnimar {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
+@keyframes fundoAnimado {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
 }
 
 .tela-inicial, .caixa-principal {
   background-color: var(--cor-painel);
-  border-radius: 20px;
-  padding: 30px;
-  max-width: 600px;
+  border-radius: 15px;
+  padding: 25px;
   width: 100%;
-  box-shadow: 0 0 25px rgba(0, 255, 231, 0.3);
+  max-width: 600px;
   text-align: center;
+  box-shadow: var(--sombra-neon);
+  border: 2px solid var(--cor-destaque);
 }
 
 h1, h2 {
   color: var(--cor-destaque);
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  text-shadow: 0 0 10px var(--cor-destaque);
+  margin-bottom: 15px;
+  text-shadow: var(--sombra-neon);
+  font-size: 1.2rem;
 }
 
 p {
-  font-size: 1.1rem;
-  margin-bottom: 20px;
+  font-size: 0.85rem;
   line-height: 1.6;
+  margin-bottom: 20px;
 }
 
 button {
-  font-family: 'Orbitron', sans-serif;
+  font-family: 'Press Start 2P', cursive;
+  padding: 12px 18px;
+  font-size: 0.75rem;
   border: none;
-  padding: 12px 24px;
-  font-size: 1rem;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  margin-top: 10px;
-  transition: background-color 0.3s, transform 0.2s;
-  box-shadow: 0 4px 12px rgba(0, 255, 231, 0.1);
+  margin-top: 15px;
+  transition: all 0.3s ease;
+  box-shadow: var(--sombra-neon);
 }
 
 .iniciar-btn {
   background-color: var(--cor-botao);
-  color: #0a0a23;
+  color: #000;
 }
 
 .iniciar-btn:hover {
@@ -90,12 +92,13 @@ button {
   width: 100%;
   margin: 10px 0;
   background-color: var(--cor-botao);
-  color: #0a0a23;
+  color: #000;
+  box-shadow: var(--sombra-neon);
 }
 
 .botao-alternativa:hover {
   background-color: var(--cor-botao-hover);
-  transform: scale(1.02);
+  transform: scale(1.03);
 }
 
 .botao-reiniciar {
@@ -115,32 +118,32 @@ button {
 
 footer {
   margin-top: 40px;
-  color: #888;
-  font-size: 0.8rem;
+  color: #bbb;
+  font-size: 0.7rem;
   text-align: center;
 }
 
 /* Responsivo para celular */
 @media (max-width: 480px) {
   .tela-inicial, .caixa-principal {
-    padding: 15px;
-    border-radius: 15px;
+    padding: 20px;
+    border-radius: 10px;
   }
 
   h1, h2 {
-    font-size: 1.4rem;
+    font-size: 1rem;
   }
 
   button {
-    font-size: 0.9rem;
-    padding: 10px 16px;
+    font-size: 0.7rem;
+    padding: 10px 14px;
   }
 
   .botao-alternativa {
-    font-size: 0.95rem;
+    font-size: 0.75rem;
   }
 
   p {
-    font-size: 1rem;
+    font-size: 0.75rem;
   }
 }
